@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/savemanu"
+        android:icon="@android:drawable/stat_sys_download"
+        android:title="note"
+        app:showAsAction="always"
+        tools:title="note" />
+</menu>
