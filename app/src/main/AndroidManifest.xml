@@ -20,6 +20,14 @@
         </activity>
         <activity android:name=".UserNote" />
         <activity android:name=".Displayer"></activity>
+
+        <receiver android:name=".OurPhoneStateReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE"/>
+            </intent-filter>
+        </receiver>
     </application>
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
 
 </manifest>
