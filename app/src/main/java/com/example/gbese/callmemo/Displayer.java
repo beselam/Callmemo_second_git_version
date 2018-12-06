@@ -1,8 +1,10 @@
 package com.example.gbese.callmemo;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.CalendarContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -72,9 +74,25 @@ public class Displayer extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Memo is not deleted  :)", Toast.LENGTH_LONG).show();
 
             }
+
+            }
+        else if(item.getItemId() == R.id.set_calander){
+
+            Intent intent1 = new Intent(Intent.ACTION_INSERT);
+            intent1.setData(CalendarContract.Events.CONTENT_URI);
+            startActivity(intent1);
         }
+        else if(item.getItemId() == R.id.share_content){
 
-
+            EditText shrecontent1 = (EditText) findViewById(R.id.displaycontent);
+            String sharecontent = shrecontent1.getText().toString();
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_TEXT, sharecontent);
+            startActivity(Intent.createChooser(intent,"Share via"));
+            return true;
+        }
 
         finish();
         return true;
