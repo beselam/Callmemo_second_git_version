@@ -130,6 +130,11 @@ public class UserData extends SQLiteOpenHelper {
 
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public boolean contextMenuDeleteData(long id) {
         SQLiteDatabase db = this.getWritableDatabase();
 
