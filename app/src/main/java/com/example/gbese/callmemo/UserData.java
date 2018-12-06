@@ -130,4 +130,27 @@ public class UserData extends SQLiteOpenHelper {
 
     }
 
+    public boolean contextMenuDeleteData(long id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete("CALLABLE",
+                "_id = ?",
+                new String[]{Long.toString(id)});
+
+
+        return true;
+
+    }
+
+    public Cursor getListContextMenuContent(long ListId){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cuursor = db.query("CALLABLE",
+                new String[]{"_id","TITLE", "CONTENT"}, "_id = ?", new String[]{Long.toString(ListId)}
+                , null, null, null);
+        return cuursor;
+
+    }
+
+
+
 }
