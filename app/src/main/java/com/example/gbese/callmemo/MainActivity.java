@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         coontentList = (ListView) findViewById(R.id.contentlist);
+        registerForContextMenu(coontentList);
     }
 
 
@@ -121,5 +123,47 @@ public class MainActivity extends AppCompatActivity {
     public void nextacti(View view) {
         Intent intent= new Intent(this,UserNote.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getMenuInflater().inflate(R.menu.long_press,menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo listViewInfo = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+        long selectedListId = listViewInfo.id;
+        switch (item.getItemId()){
+            case R.id.delete1:
+                SQLiteOpenHelper daata = new UserData(this);
+                ((UserData) daata).contextMenuDeleteData(selectedListId);
+                boolean deletedata = ((UserData) daata).contextMenuDeleteData(selectedListId);
+                if(deletedata){
+                    Toast.makeText(this, "memo is deleted :)", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(this, "memo is not deleted :(", Toast.LENGTH_SHORT).show();
+                }
+                onStart();
+                return true;
+
+            case R.id.share1:
+                long selectedListId2 = listViewInfo.id;
+                SQLiteOpenHelper daata2 = new UserData(this);
+                Cursor cursor = ((UserData) daata2).getListContextMenuContent(selectedListId2);
+
+                if (cursor.moveToFirst()) {
+                    String contenet = cursor.getString(2);
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_SEND);
+                    intent.setType("text/plain");
+                    intent.putExtra(Intent.EXTRA_TEXT, contenet);
+                    startActivity(Intent.createChooser(intent,"Share via"));
+                }
+                default:
+                    return super.onContextItemSelected(item);
+        }
+
     }
 }
