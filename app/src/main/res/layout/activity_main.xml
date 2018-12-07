@@ -35,7 +35,7 @@
         android:layout_marginBottom="48dp"
 
         android:clickable="true"
-        android:onClick="nextacti"
+        android:onClick="fabNextaActivity"
         android:src="@drawable/pl"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
