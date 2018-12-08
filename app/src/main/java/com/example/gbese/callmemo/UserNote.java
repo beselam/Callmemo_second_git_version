@@ -10,6 +10,9 @@ import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * this is the java class for the activity users add their callnote
+ */
 public class UserNote extends AppCompatActivity {
     EditText title1,content1;
     UserData data;
@@ -22,6 +25,11 @@ public class UserNote extends AppCompatActivity {
         data = new UserData(this);
 
     }
+
+    /**
+     * this is the method from thr UserData class
+     * it add data to the database
+     */
     public void addData() {
         String title;
         String content;
@@ -29,7 +37,9 @@ public class UserNote extends AppCompatActivity {
         content = content1.getText().toString();
 
 
-
+        /**
+         * this boolean is for giving the user a toast message
+         */
         boolean isinserted = data.addData(title, content);
         if (isinserted == true) {
             Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
@@ -42,6 +52,11 @@ public class UserNote extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * inflating the menu  icons in this  activity
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -49,10 +64,17 @@ public class UserNote extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * click listener for the icons
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-
+// we are using id to identify the selected icon
+// this icon show a toast if user have an empty title or content box
+// if the user put all then it will call addData() to add the data to the database
             case R.id.savemanu:
                 String title;
                 String content;
@@ -67,7 +89,8 @@ public class UserNote extends AppCompatActivity {
                     addData();
                 }
                 return true;
-
+//this icon is for sharing contents in the content box through different messaging app
+//we are using implicit intent with action send
             case R.id.share_content:
                 EditText shrecontent1 = (EditText) findViewById(R.id.displaycontent);
                 String sharecontent = shrecontent1.getText().toString();
@@ -77,6 +100,7 @@ public class UserNote extends AppCompatActivity {
                 intent.putExtra(Intent.EXTRA_TEXT, sharecontent);
                 startActivity(Intent.createChooser(intent,"Share via"));
                 return true;
+// this icon will take the user to his calendar
 
             case R.id.set_calander:
                 Intent intent1 = new Intent(Intent.ACTION_INSERT);

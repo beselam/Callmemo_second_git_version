@@ -131,7 +131,7 @@ public class UserData extends SQLiteOpenHelper {
     }
 
     /**
-     *
+     *this is a delete method for contextmenu
      * @param id
      * @return
      */
@@ -147,6 +147,11 @@ public class UserData extends SQLiteOpenHelper {
 
     }
 
+    /**
+     * cursor for the contextmenu
+     * @param ListId
+     * @return
+     */
     public Cursor getListContextMenuContent(long ListId){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cuursor = db.query("CALLABLE",
