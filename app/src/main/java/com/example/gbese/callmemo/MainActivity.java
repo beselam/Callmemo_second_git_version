@@ -33,7 +33,6 @@ import static android.nfc.NfcAdapter.EXTRA_ID;
  */
 public class MainActivity extends AppCompatActivity {
     private ListView coontentList;
-    private SQLiteDatabase db;
     Cursor cursor;
 
     @Override
@@ -66,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         SQLiteOpenHelper data = new UserData(this);
         try {
-            db = data.getReadableDatabase();
+            SQLiteDatabase db = data.getReadableDatabase();
             cursor = db.query("CALLABLE",
                     new String[]{"_id", "TITLE"},
                     null, null, null, null, null);
