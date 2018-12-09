@@ -11,17 +11,18 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 /**
- * this is the java class for the activity users add their callnote
+ * this is the java class for the activity users add their call note
  */
 public class UserNote extends AppCompatActivity {
-    EditText title1,content1;
-    UserData data;
+    private EditText title1;
+    EditText content1;
+    private UserData data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_note);
-        title1 = (EditText) findViewById(R.id.displaytitle);
-        content1 = (EditText) findViewById(R.id.displaycontent);
+        title1 = findViewById(R.id.displaytitle);
+        content1 = findViewById(R.id.displaycontent);
         data = new UserData(this);
 
     }
@@ -37,9 +38,9 @@ public class UserNote extends AppCompatActivity {
         content = content1.getText().toString();
 
 
-        /**
-         * this boolean is for giving the user a toast message
-         */
+
+         // this boolean is for giving the user a toast message
+
         boolean isinserted = data.addData(title, content);
         if (isinserted == true) {
             Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
@@ -54,8 +55,8 @@ public class UserNote extends AppCompatActivity {
 
     /**
      * inflating the menu  icons in this  activity
-     * @param menu
-     * @return
+     * @param menu parameter type
+     * @return true
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -66,8 +67,8 @@ public class UserNote extends AppCompatActivity {
 
     /**
      * click listener for the icons
-     * @param item
-     * @return
+     * @param item parameter type
+     * @return parameter type
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -92,7 +93,7 @@ public class UserNote extends AppCompatActivity {
 //this icon is for sharing contents in the content box through different messaging app
 //we are using implicit intent with action send
             case R.id.share_content:
-                EditText shrecontent1 = (EditText) findViewById(R.id.displaycontent);
+                EditText shrecontent1 = findViewById(R.id.displaycontent);
                 String sharecontent = shrecontent1.getText().toString();
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);

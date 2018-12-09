@@ -6,7 +6,7 @@
         android:id="@+id/noteitem22"
         android:icon="@android:drawable/ic_menu_delete"
         android:title="mynote"
-        app:showAsAction="always"></item>
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/share_content"

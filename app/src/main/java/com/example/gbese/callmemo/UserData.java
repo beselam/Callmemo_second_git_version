@@ -9,14 +9,14 @@ import android.database.sqlite.SQLiteOpenHelper;
  * this is our class For  SQLite DATABASE helper
  * our database name and table name is listed below
  */
-public class UserData extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME ="NebiiiBese.db";
+class UserData extends SQLiteOpenHelper {
+    private static final String DATABASE_NAME ="NebiiiBese.db";
     public static final int    DATABASE_VERSION  =1;
 
 
     /**
-     * this is the constractor for our sqlite database helper which has the database name and database version as a parameter
-     * @param context
+     * this is the constructor for our sqlite database helper which has the database name and database version as a parameter
+     * @param context - parameter type
      */
     public UserData(Context context) {
 
@@ -24,10 +24,10 @@ public class UserData extends SQLiteOpenHelper {
     }
 
     /**
-     * sql database is created in oncreate method
+     * sql database is created in on create method
      * we are creating  here  the table for the database
      * the table has title and content as column
-     * @param db
+     * @param db parameter type
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -40,9 +40,9 @@ public class UserData extends SQLiteOpenHelper {
 
     /**
      *  we are not currently using this method but it should be here  whenever we need to update our database we can use it
-     * @param db
-     * @param oldVersion
-     * @param newVersion
+     * @param db  database
+     * @param oldVersion  older version
+     * @param newVersion   new version
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -52,10 +52,10 @@ public class UserData extends SQLiteOpenHelper {
     /**
      * this is a method we use later in UserNote class
      * used to add data from the user in to the database
-     * itemtitle and itemcontet are datas from the user to the database table
-     * @param itemtitle
-     * @param itemcontent
-     * @return
+     * itemtitle and itemcontent are data's from the user to the database table
+     * @param itemtitle the title
+     * @param itemcontent the context
+     * @return true
      */
     public boolean addData(String itemtitle,String itemcontent ) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -71,11 +71,11 @@ public class UserData extends SQLiteOpenHelper {
     }
 
     /**
-     * this is a method which use list Id from  from the simplecurser adapter
+     * this is a method which use list Id from  from the simple cursor adapter
      * using the ID of the clicked item we can get both the content and the item the a specific item
      * we use this method in Displayer class
-     * @param ListId
-     * @return
+     * @param ListId the id
+     * @return cursor which contain a data
      */
     public Cursor getListContent(int ListId){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -91,10 +91,10 @@ public class UserData extends SQLiteOpenHelper {
      * it let users to update this data add to database
      * we use this method later in Dispalyer class
      *
-     * @param itemtitle
-     * @param itemcontent
-     * @param id
-     * @return
+     * @param itemtitle title
+     * @param itemcontent content
+     * @param id the id
+     * @return  true
      */
     public boolean UpdateData(String itemtitle,String itemcontent ,int id) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -112,11 +112,11 @@ public class UserData extends SQLiteOpenHelper {
     }
 
     /**
-     * this method use the id of the clicked item from the listview
+     * this method use the id of the clicked item from the list view
      * using this id it let user to delete the data
      * we use this method later in Dispalyer class
-     * @param id
-     * @return
+     * @param id the id
+     * @return true
      */
     public boolean DeleteData(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -131,9 +131,9 @@ public class UserData extends SQLiteOpenHelper {
     }
 
     /**
-     *this is a delete method for contextmenu
-     * @param id
-     * @return
+     *this is a delete method for context menu
+     * @param id the id
+     * @return true
      */
     public boolean contextMenuDeleteData(long id) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -148,9 +148,9 @@ public class UserData extends SQLiteOpenHelper {
     }
 
     /**
-     * cursor for the contextmenu
-     * @param ListId
-     * @return
+     * cursor for the context menu
+     * @param ListId the id of the item
+     * @return cursor with the data inside
      */
     public Cursor getListContextMenuContent(long ListId){
         SQLiteDatabase db = this.getWritableDatabase();

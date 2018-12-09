@@ -15,28 +15,29 @@ import android.widget.Toast;
 import static android.nfc.NfcAdapter.EXTRA_ID;
 
 /**
- * this is a class for the activity that user can opent to see or edit their callnote or memo
+ * this is a class for the activity that user can open to see or edit their call note or memo
  * in this cla we used an id of the selected item to get data from the database
  * the id is from the intent which is from the main  activity
  * we give this id to the cursor and and the cursor browse the database and deliver the data
- * we receive the data from the curser and display it the edittext box
+ * we receive the data from the cursor and display it the edit text box
  */
 public class Displayer extends AppCompatActivity {
-    EditText displaytitle1, displaycontent1;
-    SQLiteDatabase db;
+    private EditText displaytitle1;
+    private EditText displaycontent1;
+    //SQLiteDatabase db;
     SQLiteOpenHelper data;
     Cursor displayerCursor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_displayer);
-        displaytitle1 = (EditText) findViewById(R.id.displaytitle);
-        displaycontent1 = (EditText) findViewById(R.id.displaycontent);
+        displaytitle1 = findViewById(R.id.displaytitle);
+        displaycontent1 = findViewById(R.id.displaycontent);
         // below; getting the id of thr list item from the intent and save it to an int variable
         int ListId = (Integer) getIntent().getExtras().get(EXTRA_ID);
         // calling the UserData class
         data = new UserData(this);
-        // below ; this curser get the data
+        // below ; this cursor get the data
         displayerCursor = ((UserData) data).getListContent(ListId);
         // browsing through our database class
         if (displayerCursor.moveToFirst()) {
@@ -49,8 +50,8 @@ public class Displayer extends AppCompatActivity {
 
     /**
      * inflating the icons
-     * @param menu
-     * @return
+     * @param menu take menu as a parameter
+     * @return true
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -63,8 +64,8 @@ public class Displayer extends AppCompatActivity {
      * setting the function for the icons
      * here we have 4 icons to delete, share and save memo and a calendar icon
      * so we set onclick action for each of them
-     * @param item
-     * @return
+     * @param item take item as a parameter
+     * @return true
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -72,7 +73,7 @@ public class Displayer extends AppCompatActivity {
         //below;  this icon save the data if the user update or edit his memo
 
         if(item.getItemId()==R.id.noteitem2){
-            // getting the content and title from the edittext widget
+            // getting the content and title from the edit text widget
             String newcontent = displaycontent1.getText().toString();
             String newtitle = displaytitle1.getText().toString();
            // use the id to update the data
@@ -90,7 +91,7 @@ public class Displayer extends AppCompatActivity {
             }
         }
         // this icon delete the selected memo data
-        // again we user the id from the intent and we call the deletedata method from the UserData class
+        // again we user the id from the intent and we call the delete data method from the UserData class
         //this method use the id from the intent and delete the data
         else if(item.getItemId()==R.id.noteitem22){
 
@@ -115,7 +116,7 @@ public class Displayer extends AppCompatActivity {
             intent1.setData(CalendarContract.Events.CONTENT_URI);
             startActivity(intent1);
         }
-        // this icon is to share content of the callnote using an implicit intent
+        // this icon is to share content of the call note using an implicit intent
         else if(item.getItemId() == R.id.share_content){
 
             EditText shrecontent1 = (EditText) findViewById(R.id.displaycontent);

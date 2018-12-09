@@ -28,13 +28,13 @@ public class OurPhoneStateReceiver extends BroadcastReceiver {
         createNotification(context,"tkmsg","press to put your callnotes  ","Callmemo");
 
     }
-    public void createNotification(Context context,String tkmsg,String msgtext,String appname){
+    private void createNotification(Context context, String tkmsg, String msgtext, String appname){
 
         createnotify(context,"notify","includeAll");
         PendingIntent pendingintent= PendingIntent.getActivity(context,0,new Intent(context,MainActivity.class),0);
         NotificationCompat.Builder notification =  new NotificationCompat.Builder(context,CHANEL_ID);
         notification.setAutoCancel(true);
-        notification.setSmallIcon(R.drawable.notify);
+        notification.setSmallIcon(R.drawable.mm);
         notification.setTicker(tkmsg);
         notification.setWhen(System.currentTimeMillis());
         notification.setContentTitle(msgtext);
@@ -46,7 +46,7 @@ public class OurPhoneStateReceiver extends BroadcastReceiver {
 
 
     }
-    public void createnotify(Context context, String Notifications, String IncludeAll){
+    private void createnotify(Context context, String Notifications, String IncludeAll){
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
 
             CharSequence name= Notifications;

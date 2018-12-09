@@ -32,18 +32,18 @@ import static android.nfc.NfcAdapter.EXTRA_ID;
  * this is the main activity to display the list
  */
 public class MainActivity extends AppCompatActivity {
-    ListView coontentList;
-    SQLiteDatabase db;
+    private ListView coontentList;
+    private SQLiteDatabase db;
     Cursor cursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-         coontentList = (ListView) findViewById(R.id.contentlist);
-         // below , registering the listview for the context menu
+         coontentList = findViewById(R.id.contentlist);
+         // below , registering the list view for the context menu
         registerForContextMenu(coontentList);
-//this if method is for OurPhoneStateReceiver class , incase the broadcast receiver didn't get
+//this if method is for OurPhoneStateReceiver class , in case the broadcast receiver didn't get
 // a permission through the manifest then this method ask the user to give the access
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE)
 
@@ -56,8 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     /**
-     * here is our cursor and simplecursoradapter
-     * the curser get the data and the adapter display the list
+     * here is our cursor and simple cursor adapter
+     * the cursor get the data and the adapter display the list
      * we use try catch to run our app smoothly , so so if the data is not found the user get the toast
      *
      */
@@ -76,17 +76,17 @@ public class MainActivity extends AppCompatActivity {
                     new String[]{"TITLE"},
                     new int[]{android.R.id.text1},
                     0);
-            // below , set the adapter inside the listview
+            // below , set the adapter inside the list view
             coontentList.setAdapter(listAdapter);
 
         } catch (SQLiteException e) {
             Toast toast = Toast.makeText(this, "Database unavailable", Toast.LENGTH_SHORT);
             toast.show();
         }
-        /**
-         * click listener for the listview
-         * this will take the user to Displayer activity to edit or see his memo
-         */
+
+         //click listener for the list view
+         //this will take the user to Displayer activity to edit or see his memo
+
         AdapterView.OnItemClickListener itemClickListener= new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -102,8 +102,8 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * inflating menu icons in this activity
-     * @param menu
-     * @return
+     * @param menu tpe of the parameter
+     * @return true/inflate
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -114,8 +114,8 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * set action for the clicked menu icon
-     * @param item
-     * @return
+     * @param item type of the parameter
+     * @return true
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * this is the method for the FAB button and it take the user to the UserNote activity to create memo
-     * @param view
+     * @param view type of the parameter
      */
     public void fabNextaActivity(View view) {
         Intent intent= new Intent(this,UserNote.class);
@@ -147,10 +147,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * inflating the contextmenu
-     * @param menu
-     * @param v
-     * @param menuInfo
+     * inflating the context menu
+     * @param menu type of the parameter
+     * @param v type of the parameter
+     * @param menuInfo type of the parameter
      */
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
@@ -160,12 +160,12 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * setting action fot the selected context menu options
-     * @param item
-     * @return
+     * @param item - type of the parameter
+     * @return true
      */
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        //below; using the adapterview we sore the data of the selected item in listViewInfo
+        //below; using the adapter view we sore the data of the selected item in listViewInfo
         AdapterView.AdapterContextMenuInfo listViewInfo = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
         //we sore the id of the selected item in a new instance variable
         // we use this id to delete and share the data of the selected item
@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
                 long selectedListId2 = listViewInfo.id;
                 SQLiteOpenHelper daata2 = new UserData(this);
                 Cursor cursor = ((UserData) daata2).getListContextMenuContent(selectedListId2);
-// below; the curser is browsing the table of our database to get our data
+// below; the cursor is browsing the table of our database to get our data
                 if (cursor.moveToFirst()) {
                     String contenet = cursor.getString(2);
                     Intent intent = new Intent();
