@@ -50,7 +50,7 @@ class UserData extends SQLiteOpenHelper {
     }
 
     /**
-     * this is a method we use later in UserNote class
+     * this is a method we use later in UserNote Class
      * used to add data from the user in to the database
      * itemtitle and itemcontent are data's from the user to the database table
      * @param itemtitle the title
