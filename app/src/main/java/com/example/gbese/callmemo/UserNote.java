@@ -15,7 +15,7 @@ import android.widget.Toast;
  */
 public class UserNote extends AppCompatActivity {
     private EditText title1;
-    EditText content1;
+    private   EditText content1;
     private UserData data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -25,7 +25,7 @@ public class Displayer extends AppCompatActivity {
     private EditText displaytitle1;
     private EditText displaycontent1;
     //SQLiteDatabase db;
-    SQLiteOpenHelper data;
+    UserData data;
     Cursor displayerCursor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +96,7 @@ public class Displayer extends AppCompatActivity {
         else if(item.getItemId()==R.id.noteitem22){
 
             int ListId2 = (Integer) getIntent().getExtras().get(EXTRA_ID);
-            SQLiteOpenHelper daata = new UserData(this);
+            UserData daata = new UserData(this);
             ((UserData) daata).DeleteData(ListId2);
             boolean deleteddata = ((UserData) daata).DeleteData(ListId2);
             if(deleteddata){

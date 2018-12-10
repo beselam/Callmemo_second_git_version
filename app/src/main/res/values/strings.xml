@@ -5,4 +5,7 @@
     <string name="title_notifications">Notifications</string>
     <string name="entercontent">entercontent</string>
     <string name="title">title</string>
+    <string name="titlee">Enter your Title</string>
+    <string name="ttt">Enter Your Title</string>
+    <string name="contet">Enter Your Content</string>
 </resources>

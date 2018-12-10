@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * this is our class For  SQLite DATABASE helper
  * our database name and table name is listed below
  */
-class UserData extends SQLiteOpenHelper {
+public class UserData extends SQLiteOpenHelper {
     private static final String DATABASE_NAME ="NebiiiBese.db";
     public static final int    DATABASE_VERSION  =1;
 

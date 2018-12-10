@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UserNote">
+
     <EditText
         android:id="@+id/displaytitle"
         android:layout_width="0dp"
-        android:gravity="top"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -17,7 +17,8 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
-        android:hint="@string/title"
+        android:gravity="top"
+        android:hint="@string/ttt"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toTopOf="@+id/displaycontent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,7 +28,6 @@
     <EditText
         android:id="@+id/displaycontent"
         android:layout_width="0dp"
-        android:gravity="top"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -36,7 +36,8 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="7dp"
         android:ems="10"
-        android:hint="@string/entercontent"
+        android:gravity="top"
+        android:hint="@string/contet"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
