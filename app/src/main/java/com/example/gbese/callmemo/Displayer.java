@@ -24,9 +24,7 @@ import static android.nfc.NfcAdapter.EXTRA_ID;
 public class Displayer extends AppCompatActivity {
     private EditText displaytitle1;
     private EditText displaycontent1;
-    //SQLiteDatabase db;
-    UserData data;
-    Cursor displayerCursor;
+    private UserData data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,14 +36,14 @@ public class Displayer extends AppCompatActivity {
         // calling the UserData class
         data = new UserData(this);
         // below ; this cursor get the data
-        displayerCursor = ((UserData) data).getListContent(ListId);
+        Cursor displayerCursor =  data.getListContent(ListId);
         // browsing through our database class
         if (displayerCursor.moveToFirst()) {
             String ttitle = displayerCursor.getString(1);
             String ccontent = displayerCursor.getString(2);
             displaytitle1.setText(ttitle);
             displaycontent1.setText(ccontent);
-        }
+       }
     }
 
     /**

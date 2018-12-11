@@ -41,7 +41,7 @@ public class OurPhoneStateReceiver extends BroadcastReceiver {
     protected void createNotification(Context context, String tkmsg, String msgtext, String appname){
         // in the next line we are calling a method which used to create a notification channel
         createnotify(context,"notify","includeAll");
-        PendingIntent pendingintent= PendingIntent.getActivity(context,0,new Intent(context,MainActivity.class),0);
+        PendingIntent pendingintent= PendingIntent.getActivity(context,0,new Intent(context,UserNote.class),0);
         NotificationCompat.Builder notification =  new NotificationCompat.Builder(context,CHANEL_ID);
         notification.setAutoCancel(true);
         notification.setSmallIcon(R.drawable.mm);

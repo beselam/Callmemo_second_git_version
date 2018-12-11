@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class UserData extends SQLiteOpenHelper {
     private static final String DATABASE_NAME ="NebiiiBese.db";
-    public static final int    DATABASE_VERSION  =1;
+    private static final int    DATABASE_VERSION  =1;
 
 
     /**

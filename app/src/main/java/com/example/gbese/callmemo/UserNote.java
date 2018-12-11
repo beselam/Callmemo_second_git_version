@@ -28,7 +28,7 @@ public class UserNote extends AppCompatActivity {
     }
 
     /**
-     * this is the method from thr UserData class
+     * this is the method from the UserData class
      * it add data to the database
      */
     public void addData() {
@@ -37,12 +37,9 @@ public class UserNote extends AppCompatActivity {
         title = title1.getText().toString();
         content = content1.getText().toString();
 
-
-
-         // this boolean is for giving the user a toast message
-
-        boolean isinserted = data.addData(title, content);
-        if (isinserted == true) {
+ // this boolean is for giving the user a toast message
+       boolean dataIsInserted = data.addData(title, content);
+        if (dataIsInserted == true) {
             Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
 
         } else {

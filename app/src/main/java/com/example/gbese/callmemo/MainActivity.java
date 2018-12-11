@@ -33,8 +33,7 @@ import static android.nfc.NfcAdapter.EXTRA_ID;
  */
 public class MainActivity extends AppCompatActivity {
     private ListView coontentList;
-    Cursor cursor;
-     UserData data;
+    private UserData data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         data = new UserData(this);
         try {
             SQLiteDatabase db = data.getReadableDatabase();
-            cursor = db.query("CALLABLE",
+           Cursor cursor = db.query("CALLABLE",
                     new String[]{"_id", "TITLE"},
                     null, null, null, null, null);
             SimpleCursorAdapter listAdapter = new SimpleCursorAdapter(this,
@@ -166,16 +165,15 @@ public class MainActivity extends AppCompatActivity {
     public boolean onContextItemSelected(MenuItem item) {
         //below; using the adapter view we sore the data of the selected item in listViewInfo
         AdapterView.AdapterContextMenuInfo listViewInfo = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
-        //we sore the id of the selected item in a new instance variable
+        //we store the id of the selected item in a new instance variable
         // we use this id to delete and share the data of the selected item
         long selectedListId = listViewInfo.id;
         switch (item.getItemId()){
             // this option get the data from the cursor and delete it
             case R.id.delete1:
-                SQLiteOpenHelper daata = new UserData(this);
-                ((UserData) daata).contextMenuDeleteData(selectedListId);
-                boolean deletedata = ((UserData) daata).contextMenuDeleteData(selectedListId);
-                if(deletedata){
+             boolean deleted = data.contextMenuDeleteData(selectedListId);
+
+                if(deleted){
                     Toast.makeText(this, "memo is deleted :)", Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(this, "memo is not deleted :(", Toast.LENGTH_SHORT).show();
@@ -185,8 +183,7 @@ public class MainActivity extends AppCompatActivity {
 // this option get the content of the selected item and share it using implicit intent
             case R.id.share1:
                 long selectedListId2 = listViewInfo.id;
-                SQLiteOpenHelper daata2 = new UserData(this);
-                Cursor cursor = ((UserData) daata2).getListContextMenuContent(selectedListId2);
+               Cursor cursor = data.getListContextMenuContent(selectedListId2);
 // below; the cursor is browsing the table of our database to get our data
                 if (cursor.moveToFirst()) {
                     String contenet = cursor.getString(2);
